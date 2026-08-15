@@ -1,0 +1,8 @@
+streamlit
+torch
+transformers
+torchvision
+pillow
+easyocr
+gTTS
+sentencepiece
