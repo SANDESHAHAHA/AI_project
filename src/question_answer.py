@@ -43,9 +43,12 @@ def answer_question(context:str,question:str)->str:
     with torch.no_grad():
         outputs = model(**inputs)
 
-    start_index = torch.argmax(outputs.start_logits)
-    end_index = torch.argmax(outputs.end_logits)
+    start_index = torch.argmax(outputs.start_logits).item()
+    end_index = torch.argmax(outputs.end_logits).item()
 
+    if end_index<start_index:
+        end_index = start_index
+        
     answers_token = inputs["input_ids"][0][
         start_index:end_index + 1
     ]
