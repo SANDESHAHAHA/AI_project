@@ -6,3 +6,4 @@ pillow
 easyocr
 gTTS
 sentencepiece
+pyspellchecker
