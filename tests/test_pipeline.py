@@ -4,6 +4,7 @@ from pathlib import Path
 sys.path.insert(0,str(Path(__file__).parent.parent))
 
 from src.ocr import extract_text
+from src.ocr import fallback_correct
 from src.question_answer import answer_question
 from src.summarizer import summarize_text
 from src.text_to_speech import generate_speech
@@ -18,7 +19,8 @@ audio_path = output_dir / "answer.mp3"
 
 
 #1. ocr 
-text = extract_text(image_path)
+initial_text = extract_text(image_path)
+text = fallback_correct(initial_text)
 print(f"\n====Extracted Text===")
 print(text)
 

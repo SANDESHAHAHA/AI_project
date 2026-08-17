@@ -7,6 +7,7 @@ import os
 sys.path.insert(0,str(Path(__file__).parent))
 
 from src.ocr import extract_text
+from src.ocr import fallback_correct
 from src.question_answer import answer_question
 from src.summarizer import summarize_text
 from src.text_to_speech import generate_speech
@@ -34,8 +35,8 @@ if uploaded_file is not None:
 if st.button("Extract Text"):
 
     with st.spinner("Extracting text..."):
-        text = extract_text(image_path=image_path)
-
+        initial = extract_text(image_path=image_path)
+        text = fallback_correct(initial)
     st.session_state["text"] = text
 
 
